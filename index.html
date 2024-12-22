@@ -1,72 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Lungs of the Earth, a global initiative dedicated to reforesting the planet and protecting our natural ecosystems. Together, we can make a greener future.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <title>LODTE.</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon-32x32.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-
-    <meta http-equiv="refresh" content="15; url = ../404.html" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/style2.css">
+        <!-- Favicons -->
+        <link href="assets/img/favicon.png" rel="icon">
+        <link href="favicon_io/apple-touch-icon.png" rel="apple-touch-icon">
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    
+        <title>Lungs of the Earth</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(42, 157, 143, 0.7)), url('https://source.unsplash.com/1600x900/?forest');
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            animation: fadeIn 2s;
+        }
+        header p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            animation: fadeIn 2s ease-in 1s;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #264653;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #e9c46a;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #fff;
+        }
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards;
+        }
+        section:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        section:nth-child(3) {
+            animation-delay: 1s;
+        }
+        section h2 {
+            color: #2a9d8f;
+            font-size: 2.5rem;
+        }
+        section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .cta {
+            background: #e9c46a;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .cta a {
+            display: inline-block;
+            background: #264653;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .cta a:hover {
+            background: #2a9d8f;
+        }
+        footer {
+            text-align: center;
+            background: #264653;
+            color: #fff;
+            padding: 20px 0;
+        }
+        footer a {
+            color: #e9c46a;
+            text-decoration: none;
+        }
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            background: url('https://i.imgur.com/BJYdMWD.jpeg') center/cover;
+            position: relative;
+        }
+        .hero-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: black;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-
 <body>
-
-    <div id="particles-background" class="vertical-centered-box"></div>
-    <div id="particles-foreground" class="vertical-centered-box"></div>
-
-    <div class="vertical-centered-box">
-        <div class="content">
-
-            <div class="scene">
-                <div class="objects">
-                    <div class="square"></div>
-                    <div class="circle"></div>
-                    <div class="triangle"></div>
-                </div>
-                <div class="wizard">
-                    <div class="body"></div>
-                    <div class="right-arm">
-                        <div class="right-hand"></div>
-                    </div>
-                    <div class="left-arm">
-                        <div class="left-hand"></div>
-                    </div>
-                    <div class="head">
-                        <div class="beard"></div>
-                        <div class="face">
-                            <div class="adds"></div>
-                        </div>
-                        <div class="hat">
-                            <div class="hat-of-the-hat"></div>
-                            <div class="four-point-star --first"></div>
-                            <div class="four-point-star --second"></div>
-                            <div class="four-point-star --third"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="progress"></div>
+    <nav>
+        <div class="logo">Lungs of the Earth</div>
+        <ul>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#mission">Misión</a></li>
+            <li><a href="#involved">Contacto</a></li>
+        </ul>
+    </nav>
+    <header class="hero-image">
+        <div class="hero-text">
+            <h1>Lungs of the Earth</h1>
+            <p>Reforestando el planeta, un árbol a la vez</p>
         </div>
-        <div class="noise"></div>
-
-        <script src="assets/js/script.js"></script>
-    </div>
-    </svg>
-    </div>
-    </div>
-
-    <script src="assets/js/script2.js"></script>
+    </header>
+    <main>
+        <section id="about">
+            <h2>Sobre nosotrs.</h2>
+            <img src="https://i.imgur.com/mTyEsQf.jpeg" alt="About our organization">
+            <p>Lungs of the Earth (Pulmones de la Tierra) es una iniciativa global dedicada a combatir la deforestación y promover la restauración de los ecosistemas naturales. Los árboles son los pulmones de nuestro planeta y nuestra misión es garantizar que prosperen para las generaciones futuras.</p>
+        </section>
+        <section id="mission">
+            <h2>Nuestra Mision ♥</h2>
+            <img src="https://i.imgur.com/g365K15.png" alt="Our mission for nature">
+            <p>Nuestro objetivo es plantar millones de árboles en todo el mundo, educar a las comunidades sobre la importancia de la sostenibilidad y colaborar con organizaciones locales para generar un cambio ambiental duradero. Juntos, podemos crear un planeta más saludable y más verde.</p>
+        </section>
+        <section id="involved">
+            <h2>Manos a la obra!</h2>
+            <img src="https://i.imgur.com/xwTzqpJ.png" alt="Volunteers planting trees">
+            <div class="cta">
+                <p>Únanse a nosotros para marcar la diferencia. Ofrézcase como voluntario, haga una donación o colabore con nosotros para ayudar a reforestar nuestro mundo.</p>
+                <a href="mailto:contacto@lodte.com.ar">Learn More</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+    <p>&copy; 2024 Lungs of the Earth. Todos los derechos reservados. |  <!-- <a href="#">Privacy Policy</a></p> -->
+    </footer>
 </body>
-
 </html>
