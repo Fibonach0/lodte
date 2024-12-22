@@ -142,6 +142,19 @@
         .hero-text h1 {
             font-size: 3rem;
         }
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -180,8 +193,12 @@
         </section>
         <section id="involved">
             <h2>Manos a la obra!</h2>
-            <img src="https://i.imgur.com/xwTzqpJ.png" alt="Volunteers planting trees">
-            <div class="cta">
+            <div class="image-gallery">
+                <img src="ONG-Assets/Volunteer1.jpg" alt="Tree planting">
+                <img src="ONG-Assets/Volunteer2.jpg" alt="Forest">
+                <img src="ONG-Assets/Volunteer3.jpg" alt="Environment">
+                <img src="ONG-Assets/Volunteer4.jpg" alt="Nature">
+            </div>            <div class="cta">
                 <p>Únanse a nosotros para marcar la diferencia. Ofrézcase como voluntario, haga una donación o colabore con nosotros para ayudar a reforestar nuestro mundo.</p>
                 <a href="mailto:contacto@lodte.com.ar">Conectemos!</a>
             </div>
