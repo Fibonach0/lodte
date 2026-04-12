@@ -44,54 +44,64 @@ const SITE_DATA = {
   // Integrantes de LODTE
   // Para agregar un miembro, copiá un bloque y completá los campos.
   // ──────────────────────────────────────────
+  // url: link al perfil externo del miembro (GitHub, Instagram, LinkedIn, etc.)
+  //      Si no tiene, dejá "" y la card no será clickeable.
   members: [
     {
       name: "Marcos Caro",
       role: "DM & Jugador",
       campaigns: "What is Dead May Never Die",
       extra: "Creador de The Dungeon Archives",
+      url: "https://www.instagram.com/thedungeonarchives/",
     },
     {
       name: "Santiago Agostinelli",
       role: "DM & Creador de Fornheim",
       campaigns: "El Lamento de las Doncellas",
       extra: "",
+      url: "https://www.instagram.com/hojaenbarco/",
     },
     {
       name: "Federico Diaz Sparta",
       role: "DM & Game Developer",
       campaigns: "",
       extra: "",
+      url: "https://github.com/FDiazsparta",
     },
     {
       name: "Ignacio Antuña",
       role: "Jugador & Desarrollador",
       campaigns: "",
       extra: "Creador del sitio original de LODTE",
+      url: "https://github.com/Fibonach0",
     },
     {
       name: "Juan Ignacio Bide",
       role: "El Tabernero",
       campaigns: "",
       extra: "",
+      url: "https://www.linkedin.com/in/juanibide/",
     },
     {
       name: "Martín Morillo",
       role: "Jugador",
       campaigns: "",
       extra: "",
+      url: "https://www.instagram.com/martinmorillo19/",
     },
     {
       name: "Ulises Saggion Zyupas",
       role: "DM & Jugador",
       campaigns: "Rough Sails, Solaris 3",
       extra: "",
+      url: "https://www.instagram.com/ulersag/",
     },
     {
       name: "Rodolfo Agustín García",
       role: "DM & Desarrollador",
       campaigns: "Echoes First Call, The Land Before Time",
       extra: "Desarrollador del ecosistema de herramientas LODTE",
+      url: "https://github.com/ragustingarcia",
     },
   ],
 
