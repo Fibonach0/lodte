@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0703" />
 
-  <!-- ── SEO Primario ── -->
+  <!-- SEO -->
   <title>LODTE — La Orden del Tabernero Errante | Calabozos y Dragones</title>
   <meta name="description" content="La Orden del Tabernero Errante: campañas, crónicas y mundos compartidos de Calabozos y Dragones. Archivo vivo de aventuras en Fornheim." />
   <meta name="keywords" content="LODTE, La Orden del Tabernero Errante, Calabozos y Dragones, Dungeons and Dragons, D&D, Fornheim, rol, campañas, crónicas, RPG, tabletop, juego de rol" />
@@ -12,7 +13,7 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.lodte.com.ar/" />
 
-  <!-- ── Open Graph ── -->
+  <!-- Open Graph -->
   <meta property="og:title" content="LODTE — La Orden del Tabernero Errante" />
   <meta property="og:description" content="Campañas, crónicas y mundos compartidos de Calabozos y Dragones. Un archivo vivo de aventuras nacidas entre dados, mapas y fuego de taberna." />
   <meta property="og:type" content="website" />
@@ -21,16 +22,20 @@
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="La Orden del Tabernero Errante" />
 
-  <!-- ── Twitter Card ── -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="LODTE — La Orden del Tabernero Errante" />
   <meta name="twitter:description" content="Campañas, crónicas y mundos compartidos de Calabozos y Dragones." />
   <meta name="twitter:image" content="https://www.lodte.com.ar/assets/img/og-image.png" />
 
-  <!-- ── Favicon ── -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
-  <!-- ── Structured Data (JSON-LD) ── -->
+  <!-- Preconnect for fonts (Lighthouse performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,11 +43,8 @@
     "name": "La Orden del Tabernero Errante",
     "alternateName": "LODTE",
     "url": "https://www.lodte.com.ar",
-    "description": "Grupo creativo dedicado a vivir, narrar y expandir campañas de Calabozos y Dragones, con eje en Fornheim, un mundo original en constante crecimiento.",
-    "sameAs": [
-      "https://www.instagram.com/thedungeonarchives/"
-    ],
-    "foundingDate": "2023",
+    "description": "Grupo creativo dedicado a vivir, narrar y expandir campañas de Calabozos y Dragones, con eje en Fornheim.",
+    "sameAs": ["https://www.instagram.com/thedungeonarchives/"],
     "member": [
       {"@type": "Person", "name": "Marcos Caro"},
       {"@type": "Person", "name": "Santiago Agostinelli"},
@@ -56,18 +58,34 @@
   }
   </script>
 
-  <!-- ── Styles ── -->
+  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <style>
+      body { background: #0A0703; color: #C4A060; font-family: Georgia, serif; padding: 40px; text-align: center; }
+    </style>
+  </noscript>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════
-       El sitio se renderiza aquí desde JS.
-       Para editar contenido: content/site-data.js
-       ══════════════════════════════════════════ -->
-  <div id="app"></div>
+  <div id="app">
+    <!-- Contenido inicial mientras carga JS (mejora Lighthouse FCP) -->
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0A0703;">
+      <p style="font-family:monospace;font-size:12px;color:#8B6914;letter-spacing:2px;">⚔ Cargando LODTE... ⚔</p>
+    </div>
+  </div>
 
-  <!-- ── Scripts ── -->
+  <noscript>
+    <div style="padding:60px 20px;text-align:center;">
+      <h1 style="color:#D4A844;font-family:monospace;">La Orden del Tabernero Errante</h1>
+      <p style="color:#A89060;margin-top:16px;">Este sitio requiere JavaScript para funcionar. Por favor habilitá JavaScript en tu navegador.</p>
+      <p style="color:#6B5020;margin-top:24px;">Mientras tanto, visitá nuestro Instagram: <a href="https://www.instagram.com/thedungeonarchives/" style="color:#D4A844;">@thedungeonarchives</a></p>
+    </div>
+  </noscript>
+
+  <!-- Scripts (defer para no bloquear render) -->
   <script src="content/site-data.js"></script>
   <script src="assets/js/app.js"></script>
 

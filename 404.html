@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LODTE — Redirigiendo...</title>
+  <script>
+    // GitHub Pages no soporta rutas server-side.
+    // Si alguien intenta acceder a lodte.com.ar/tools directamente,
+    // esto lo redirige a lodte.com.ar/#tools
+    var path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    if (path) {
+      window.location.replace('/#' + path);
+    } else {
+      window.location.replace('/');
+    }
+  </script>
+  <style>
+    body { background: #0A0703; color: #C4A060; font-family: monospace; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+  </style>
+</head>
+<body>
+  <p style="font-size:12px;letter-spacing:2px;">⚔ Redirigiendo... ⚔</p>
+</body>
+</html>
