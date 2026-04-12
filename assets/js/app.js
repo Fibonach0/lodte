@@ -222,18 +222,23 @@
   }
 
   function pageAbout() {
-    const memberCards = D.members.map(m => `
-      <div class="card">
+    const memberCards = D.members.map(m => {
+      const hasUrl = m.url && m.url.length > 0;
+      const tag = hasUrl ? "a" : "div";
+      const linkAttrs = hasUrl ? `href="${esc(m.url)}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;"` : "";
+      return `
+      <${tag} class="card ${hasUrl ? 'clickable' : ''}" ${linkAttrs}>
         <div class="flex gap-12" style="align-items:center;margin-bottom:8px;">
           <div class="member-avatar">${esc(initials(m.name))}</div>
           <div>
-            <p class="card-title" style="margin:0;font-size:8px;">${esc(m.name)}</p>
+            <p class="card-title" style="margin:0;font-size:8px;">${esc(m.name)}${hasUrl ? ' <span style="font-size:7px;opacity:0.6;">↗</span>' : ''}</p>
             <p style="font-family:var(--font-body);font-size:13px;color:var(--gold-dark);margin:0;">${esc(m.role)}</p>
           </div>
         </div>
         ${m.campaigns ? `<p style="font-size:12px;color:var(--gold-dim);margin:0;">DM: ${esc(m.campaigns)}</p>` : ""}
         ${m.extra ? `<p style="font-size:12px;color:var(--gold-faint);margin-top:4px;">${esc(m.extra)}</p>` : ""}
-      </div>`).join("");
+      </${tag}>`;
+    }).join("");
 
     return `
       <div class="section-narrow">
