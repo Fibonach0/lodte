@@ -15,6 +15,7 @@
   var openCampaign = null;
   var openRecipe = null;
   var mobileMenuOpen = false;
+  var loginAttempts = 0;
   var D = SITE_DATA;
   var VALID_PAGES = ["home","about","fornheim","campaigns","tools","banquetes","community","contact","admin_login","admin_panel"];
 
@@ -102,7 +103,7 @@
     for(var j=0;j<more.length;j++) mh+='<a href="#'+more[j].p+'" class="footer-link" data-page="'+more[j].p+'">'+esc(more[j].l)+'</a>';
     for(var k=0;k<D.tools.length;k++) th+='<a href="'+esc(D.tools[k].url)+'" target="_blank" rel="noopener noreferrer" class="footer-link">'+esc(D.tools[k].name)+' &#8599;</a>';
     return '<footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">'+
-      '<div><p class="footer-heading" style="font-size:10px;">LODTE</p><p style="font-size:13px;color:var(--gold-dim);line-height:1.5;">'+esc(D.config.tagline)+'</p><a href="'+esc(D.config.instagram)+'" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top:8px;">'+esc(D.config.instagramHandle)+' &#8599;</a></div>'+
+      '<div><p class="footer-heading" style="font-size:10px;">LODTE</p><p style="font-size:13px;color:var(--gold-dim);line-height:1.5;">'+esc(D.config.tagline)+'</p><a href="'+esc(D.config.instagram)+'" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin-top:8px;">'+esc(D.config.instagramHandle)+' &#8599;</a><a href="'+esc(D.config.youtube)+'" target="_blank" rel="noopener noreferrer" class="footer-link">'+esc(D.config.youtubeHandle)+' — YouTube &#8599;</a></div>'+
       '<div><p class="footer-heading">Navegación</p>'+nh+'</div>'+
       '<div><p class="footer-heading">Más</p>'+mh+'</div>'+
       '<div><p class="footer-heading">Tools &amp; Games</p>'+th+'</div>'+
@@ -211,12 +212,17 @@
   function pageContact() {
     return '<div class="section-narrow" style="max-width:700px;">'+sectionTitle("Contacto","Toda comunidad empieza con una invitación")+'<p class="prose-muted text-center mb-4">LODTE está en crecimiento. Si te interesa conocer más sobre nuestras campañas, nuestro mundo o futuras iniciativas vinculadas al rol, podés contactarnos.</p>'+
       pixelBorder('<form id="contact-form" action="https://formsubmit.co/'+esc(D.config.contactEmail)+'" method="POST" style="display:grid;gap:16px;"><input type="hidden" name="_subject" value="Nuevo mensaje desde lodte.com.ar"/><input type="hidden" name="_captcha" value="false"/><input type="hidden" name="_next" value="https://www.lodte.com.ar/"/><div><label class="form-label" for="c-name">Nombre</label><input type="text" name="name" id="c-name" class="form-input" required/></div><div><label class="form-label" for="c-email">Email</label><input type="email" name="email" id="c-email" class="form-input" required/></div><div><label class="form-label" for="c-msg">Mensaje</label><textarea name="message" id="c-msg" rows="4" class="form-textarea" required></textarea></div><button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensaje</button></form>')+
-      '<p style="font-family:var(--font-pixel);font-size:8px;color:var(--gold-faint);text-align:center;margin-top:24px;">Este puede ser el primer paso.</p><div class="text-center mt-4"><a href="'+esc(D.config.instagram)+'" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">'+esc(D.config.instagramHandle)+' &#8599;</a></div></div>';
+      '<p style="font-family:var(--font-pixel);font-size:8px;color:var(--gold-faint);text-align:center;margin-top:24px;">Este puede ser el primer paso.</p><div class="text-center mt-4" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;"><a href="'+esc(D.config.instagram)+'" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">'+esc(D.config.instagramHandle)+' &#8599;</a><a href="'+esc(D.config.youtube)+'" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">'+esc(D.config.youtubeHandle)+' — YouTube &#8599;</a></div></div>';
   }
 
   function pageAdminLogin() {
     if(adminLoggedIn) return pageAdminPanel();
-    return '<div class="section-narrow" style="max-width:400px;padding-top:140px;">'+sectionTitle("Zona Privada","Solo para miembros de la Orden")+pixelBorder('<div style="text-align:center;"><div style="margin-bottom:16px;"><label class="form-label" for="admin-pass">Contraseña</label><input type="password" id="admin-pass" class="form-input" style="text-align:center;"/></div><p id="admin-error" class="hidden" style="font-family:var(--font-pixel);font-size:7px;color:var(--red-text);margin:0 0 12px;">Contraseña incorrecta</p><button class="btn btn-primary" style="width:100%;" id="admin-login-btn">Entrar</button></div>')+'</div>';
+    var errorMsg = "";
+    if (loginAttempts === 1 || loginAttempts === 2) errorMsg = "Contraseña incorrecta, inténtalo de nuevo";
+    else if (loginAttempts === 3) errorMsg = "¿Cuál es la palabra mágica?";
+    else if (loginAttempts >= 4) errorMsg = "No dijiste la palabra mágica...";
+    var showError = loginAttempts > 0;
+    return '<div class="section-narrow" style="max-width:400px;padding-top:140px;" id="admin-login-container">'+sectionTitle("Zona Privada","Solo para miembros de la Orden")+pixelBorder('<div style="text-align:center;"><div style="margin-bottom:16px;"><label class="form-label" for="admin-pass">Contraseña</label><input type="password" id="admin-pass" class="form-input" style="text-align:center;"/></div><p id="admin-error" style="font-family:var(--font-pixel);font-size:7px;color:var(--red-text);margin:0 0 12px;'+(showError?'':'display:none;')+'">'+esc(errorMsg)+'</p><button class="btn btn-primary" style="width:100%;" id="admin-login-btn">Entrar</button></div>')+'</div><div id="punishment-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;align-items:center;justify-content:center;"><video id="punishment-video" style="max-width:100%;max-height:100%;" playsinline></video></div>';
   }
 
   function pageAdminPanel() {
@@ -271,7 +277,42 @@
     for(var l=0;l<at.length;l++) at[l].addEventListener("click",function(){adminTab=this.getAttribute("data-admin-tab");render();});
   }
 
-  function doLogin(){var p=document.getElementById("admin-pass");if(!p)return;if(p.value==="fornheim2024"){adminLoggedIn=true;navigateTo("admin_panel");}else{var e=document.getElementById("admin-error");if(e)e.classList.remove("hidden");}}
+  // SHA-256 hash - la contraseña nunca aparece en texto plano en el código
+  var PASS_HASH = "f18ac46472e9251eecf36cd91ee2cd288cd31b4b32bba3293fea4fbb45f10094";
+
+  async function sha256(text) {
+    var encoder = new TextEncoder();
+    var data = encoder.encode(text);
+    var hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    var hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+  }
+
+  async function doLogin(){
+    var p=document.getElementById("admin-pass");if(!p)return;
+    var inputHash = await sha256(p.value);
+    if(inputHash===PASS_HASH){adminLoggedIn=true;loginAttempts=0;navigateTo("admin_panel");return;}
+    loginAttempts++;
+    if(loginAttempts>=4){
+      // 4th+ fail: show punishment video then redirect to YouTube
+      render(); // show "No dijiste la palabra mágica..." message
+      setTimeout(function(){
+        var overlay=document.getElementById("punishment-overlay");
+        var video=document.getElementById("punishment-video");
+        if(overlay&&video){
+          overlay.style.display="flex";
+          video.src="assets/img/TaberneroJurassic.mp4";
+          video.play();
+          video.onended=function(){
+            // Redirect to YouTube video fullscreen
+            window.location.href="https://www.youtube.com/embed/dvFFonaNwoM?autoplay=1&rel=0";
+          };
+        }
+      },800);
+    } else {
+      render(); // re-render to show updated error message
+    }
+  }
 
   // ── Init ──
   document.addEventListener("DOMContentLoaded",function(){currentPage=getPageFromHash();render();});

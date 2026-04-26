@@ -35,6 +35,8 @@ const SITE_DATA = {
     contactEmail: "marcos.caro.92@gmail.com",
     instagram: "https://www.instagram.com/thedungeonarchives/",
     instagramHandle: "@thedungeonarchives",
+    youtube: "https://www.youtube.com/@LODTE",
+    youtubeHandle: "@LODTE",
     recipeDocUrl: "https://docs.google.com/document/d/1DWd6PNr9vd6UFSqKb1kaIE7KHNn_JTI0yVkCS3QATd8/edit",
     tagline: "Campañas, crónicas y mundos compartidos de Calabozos y Dragones.",
     description: "Un archivo vivo de aventuras nacidas entre dados, mapas, decisiones imposibles y fuego de taberna.",
