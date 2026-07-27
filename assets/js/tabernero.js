@@ -1,12 +1,16 @@
 /**
  * El Tabernero — la taberna, para www.lodte.com.ar
  *
- * Escena 8 bits a pantalla completa: el Tabernero detrás de la barra, el fuego
- * del hogar, y una caja de diálogo con texto libre. Sin dependencias.
+ * Escena a pantalla completa: el Tabernero detrás de la barra, el fuego del
+ * hogar, y una caja de diálogo con texto libre. Sin dependencias.
  *
- * La escena se dibuja a 320x180 y se escala con image-rendering: pixelated, que
- * es lo que le da el pixelado duro y parejo. Todo lo estático se pinta una sola
- * vez en un canvas aparte; por cuadro solo se redibuja lo que se mueve.
+ * El arte es pintado, no dibujado por código. Fondo, tres poses y el trazado
+ * del borde del mostrador viven en assets/img/taberna, a 1408x768, que es su
+ * resolución nativa: escalarlo destruiría la nitidez que se busca. Este
+ * archivo aporta sólo lo que una imagen fija no puede — el latido del fuego,
+ * las chispas y la respiración del Tabernero.
+ *
+ * Nada se descarga hasta que alguien se acerca al botón de entrar.
  *
  * Uso:
  *   <script src="assets/js/tabernero.js" data-endpoint="https://…workers.dev" defer></script>
