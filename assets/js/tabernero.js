@@ -43,7 +43,9 @@
   // recortada bajo su borde, así que se recompone acá recortando por ese
   // trazado. Son 195 KB que no se descargan.
 
-  const BASE = (script?.src || "").replace(/js\/[^/]*$/, "img/taberna/");
+  const RAIZ = (script?.src || "").replace(/js\/[^/]*$/, "");
+  const BASE = RAIZ + "img/taberna/";
+  const VOZ_SALUDO = RAIZ + "audio/saludo.mp3";
 
   let W = 1408, H = 768;           // lo confirma escena.json al cargar
   let escena = null;               // metadatos: anclas de las poses y borde de la barra
@@ -67,6 +69,14 @@
   let estado = "saludo";            // saludo | idle | habla
   let chispas = [];
   let listo = false;
+
+  // La voz arranca encendida: se entra a la taberna con un clic deliberado, y
+  // el saludo hablado es el efecto buscado. Pero el control tiene que estar a
+  // la vista y la elección se recuerda — un sitio que te habla sin que puedas
+  // callarlo es hostil aunque la voz esté buena.
+  let vozAudio = null;
+  let vozActiva = true;
+  try { vozActiva = localStorage.getItem("tab-voz") !== "off"; } catch { /* modo privado */ }
 
   function cargarImagen(url) {
     return new Promise((res) => {
@@ -203,6 +213,44 @@
     if (!raf) raf = requestAnimationFrame(cuadro);
   }
 
+  /**
+   * Saludo hablado.
+   *
+   * Encadena las poses con el audio: el brindis mientras dura el gesto, y
+   * hablando hasta que la voz termina. Si el audio no está, falla en silencio
+   * y queda la secuencia muda de siempre — el texto ya está en pantalla, así
+   * que nadie se pierde nada.
+   */
+  function decirSaludo() {
+    if (!vozActiva) return false;
+    if (!vozAudio) {
+      vozAudio = new Audio(VOZ_SALUDO);
+      vozAudio.preload = "auto";
+      vozAudio.addEventListener("ended", () => { estado = "idle"; });
+    }
+    vozAudio.currentTime = 0;
+    estado = "saludo";
+    const p = vozAudio.play();
+    if (p && p.catch) {
+      // Puede rebotar por política de reproducción o porque el archivo no está.
+      p.catch(() => saludoMudo());
+    }
+    setTimeout(() => {
+      if (estado === "saludo" && !vozAudio.paused) estado = "habla";
+    }, 1500);
+    return true;
+  }
+
+  /** Brindis y a reposo: la bienvenida cuando no hay voz que la acompañe. */
+  function saludoMudo() {
+    estado = "saludo";
+    setTimeout(() => { if (estado === "saludo") estado = "idle"; }, 2200);
+  }
+
+  function callarVoz() {
+    if (vozAudio) { vozAudio.pause(); vozAudio.currentTime = 0; }
+  }
+
   function pararEscena() {
     if (raf) cancelAnimationFrame(raf);
     raf = null; t0 = 0; chispas = [];
@@ -245,6 +293,15 @@
     font-family: 'Press Start 2P', monospace; font-size: 9px;
   }
   .tab-exit:hover { border-color:#8B6914; color:#D4A844; }
+
+  .tab-voz {
+    position: absolute; top: 10px; right: 92px; z-index: 3;
+    background: rgba(10,7,3,.85); border: 2px solid #3D2E0A; color: #8B6914;
+    cursor: pointer; padding: 6px 9px; line-height: 1;
+    font-family: 'Press Start 2P', monospace; font-size: 11px;
+  }
+  .tab-voz:hover { border-color:#8B6914; color:#D4A844; }
+  .tab-voz[aria-pressed="false"] { opacity: .55; }
 
   /* Caja de diálogo: borde doble, sin curvas, como corresponde */
   .tab-dialog {
@@ -330,6 +387,7 @@
     }
     .tab-nombre { top: -11px; left: 10px; }
     .tab-exit { right: auto; left: 10px; }
+    .tab-voz { right: 10px; }
     .tab-texto { flex: 1 1 auto; max-height: none; }
     .tab-form { margin-top: auto; }
     #tab-launcher { bottom: 16px; right: 16px; }
@@ -362,6 +420,8 @@
         <div class="tab-vista">
           <canvas id="tab-canvas" aria-hidden="true"></canvas>
         </div>
+        <button class="tab-voz" type="button" aria-pressed="true"
+                aria-label="Silenciar al Tabernero">🔊</button>
         <button class="tab-exit" type="button" aria-label="Salir de la taberna">SALIR ✕</button>
         <div class="tab-dialog">
           <div class="tab-nombre">EL TABERNERO</div>
@@ -391,6 +451,7 @@
       input: scene.querySelector(".tab-input"),
       send:  scene.querySelector(".tab-send"),
       exit:  scene.querySelector(".tab-exit"),
+      voz:   scene.querySelector(".tab-voz"),
     };
   }
 
@@ -427,6 +488,7 @@
 
   async function preguntar(pregunta) {
     if (ocupado || !pregunta.trim()) return;
+    callarVoz();                          // no se pisa con su propio saludo
     ocupado = true;
     els.send.disabled = true;
     els.chips.innerHTML = "";
@@ -493,9 +555,8 @@
   function abrir() {
     els.scene.classList.add("tab-open");
     els.launcher.hidden = true;
-    estado = "saludo";
     arrancarEscena();
-    setTimeout(() => { if (estado === "saludo") estado = "idle"; }, 2200);
+    if (!decirSaludo()) saludoMudo();
     if (!historia.length) {
       pintarTexto(els.texto, SALUDO, null);
       els.cont.hidden = false;
@@ -504,7 +565,15 @@
     els.input.focus();
   }
 
+  function pintarBotonVoz() {
+    els.voz.textContent = vozActiva ? "🔊" : "🔇";
+    els.voz.setAttribute("aria-pressed", String(vozActiva));
+    els.voz.setAttribute("aria-label",
+      vozActiva ? "Silenciar al Tabernero" : "Dar voz al Tabernero");
+  }
+
   function cerrar() {
+    callarVoz();
     els.scene.classList.remove("tab-open");
     els.launcher.hidden = false;
     pararEscena();
@@ -515,6 +584,13 @@
     cargarArte().then(() => { if (els.scene.classList.contains("tab-open")) arrancarEscena(); });
     els.launcher.addEventListener("click", abrir);
     els.exit.addEventListener("click", cerrar);
+    pintarBotonVoz();
+    els.voz.addEventListener("click", () => {
+      vozActiva = !vozActiva;
+      try { localStorage.setItem("tab-voz", vozActiva ? "on" : "off"); } catch { /* modo privado */ }
+      if (!vozActiva) { callarVoz(); estado = "idle"; }
+      pintarBotonVoz();
+    });
     els.form.addEventListener("submit", (e) => { e.preventDefault(); preguntar(els.input.value); });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && els.scene.classList.contains("tab-open")) cerrar();
