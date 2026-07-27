@@ -74,6 +74,7 @@
   // el saludo hablado es el efecto buscado. Pero el control tiene que estar a
   // la vista y la elección se recuerda — un sitio que te habla sin que puedas
   // callarlo es hostil aunque la voz esté buena.
+  let traerArte = () => {};
   let vozAudio = null;
   let vozActiva = true;
   try { vozActiva = localStorage.getItem("tab-voz") !== "off"; } catch { /* modo privado */ }
@@ -223,11 +224,7 @@
    */
   function decirSaludo() {
     if (!vozActiva) return false;
-    if (!vozAudio) {
-      vozAudio = new Audio(VOZ_SALUDO);
-      vozAudio.preload = "auto";
-      vozAudio.addEventListener("ended", () => { estado = "idle"; });
-    }
+    prepararVoz();
     vozAudio.currentTime = 0;
     estado = "saludo";
     const p = vozAudio.play();
@@ -239,6 +236,13 @@
       if (estado === "saludo" && !vozAudio.paused) estado = "habla";
     }, 1500);
     return true;
+  }
+
+  function prepararVoz() {
+    if (vozAudio) return;
+    vozAudio = new Audio(VOZ_SALUDO);
+    vozAudio.preload = "auto";
+    vozAudio.addEventListener("ended", () => { estado = "idle"; });
   }
 
   /** Brindis y a reposo: la bienvenida cuando no hay voz que la acompañe. */
@@ -553,6 +557,7 @@
   }
 
   function abrir() {
+    traerArte();
     els.scene.classList.add("tab-open");
     els.launcher.hidden = true;
     arrancarEscena();
@@ -581,7 +586,19 @@
 
   function iniciar() {
     construir();
-    cargarArte().then(() => { if (els.scene.classList.contains("tab-open")) arrancarEscena(); });
+    let pedido = null;
+    const traerTodo = () => {
+      if (pedido) return pedido;
+      if (vozActiva) prepararVoz();          // que vaya bajando en paralelo
+      pedido = cargarArte().then(() => {
+        if (els.scene.classList.contains("tab-open")) arrancarEscena();
+      });
+      return pedido;
+    };
+    traerArte = traerTodo;
+    for (const ev of ["mouseenter", "focus", "touchstart"]) {
+      els.launcher.addEventListener(ev, traerTodo, { once: true, passive: true });
+    }
     els.launcher.addEventListener("click", abrir);
     els.exit.addEventListener("click", cerrar);
     pintarBotonVoz();
