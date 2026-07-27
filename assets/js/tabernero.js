@@ -370,7 +370,7 @@
   .tab-send:disabled { opacity: .4; cursor: not-allowed; }
 
   @media (max-width: 700px) {
-    /* En vertical el canvas no puede estirarse: 320x180 deformado alarga al
+    /* En vertical el canvas no puede estirarse: deformarlo alarga al
        Tabernero. Se mantiene la proporción arriba y el diálogo ocupa el resto. */
     .tab-stage {
       width: 100%; height: 100dvh; max-height: 100dvh; aspect-ratio: auto;
