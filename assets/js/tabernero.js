@@ -93,16 +93,29 @@
 
     g.fillStyle = C.pared1; g.fillRect(0, 0, W, H);
 
-    // Tablones verticales con junta oscura
-    for (let x = 0; x < W; x += 16) {
-      g.fillStyle = (x / 16) % 2 ? C.pared2 : C.pared1;
+    // Tablones verticales. Cada uno con su tono: dos alternados se leen como
+    // papel pintado, no como madera.
+    const tono = ["#241a09", "#2e2210", "#2a1e0c", "#332614", "#261b0b"];
+    for (let x = 0, i = 0; x < W; x += 16, i++) {
+      g.fillStyle = tono[(i * 7 + 3) % tono.length];
       g.fillRect(x, 0, 15, SUELO);
       g.fillStyle = C.junta;
       g.fillRect(x + 15, 0, 1, SUELO);
+      // veta
+      g.fillStyle = "rgba(0,0,0,.16)";
+      g.fillRect(x + 4 + (i % 3), 0, 1, SUELO);
     }
     // Vigas horizontales
     g.fillStyle = C.junta;
     for (const y of [26, 66]) g.fillRect(0, y, W, 2);
+
+    // Luz del hogar: cae sobre la pared y se apaga con la distancia. Sin esto
+    // el fuego es un adorno que no ilumina nada.
+    const luz = g.createRadialGradient(50, 74, 6, 50, 74, 168);
+    luz.addColorStop(0, "rgba(212,168,68,.30)");
+    luz.addColorStop(0.35, "rgba(196,120,50,.14)");
+    luz.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = luz; g.fillRect(0, 0, W, SUELO);
 
     // ── Hogar, a la izquierda ───────────────────────────────────────────────
     g.fillStyle = C.junta;   g.fillRect(14, 40, 74, 64);
@@ -142,11 +155,21 @@
    * del fondo, el sprite le queda encima y el personaje parece flotar.
    */
   function pintarBarra(g) {
-    g.fillStyle = C.barra;     g.fillRect(0, SUELO, W, H - SUELO);
-    g.fillStyle = C.barraTapa; g.fillRect(0, SUELO, W, 4);
+    // Frente oscuro y saturado: separa el primer plano del fondo por valor.
+    g.fillStyle = "#2b1d08";   g.fillRect(0, SUELO, W, H - SUELO);
+    // Tapa: canto iluminado arriba, sombra proyectada debajo
     g.fillStyle = C.barraLuz;  g.fillRect(0, SUELO, W, 1);
-    g.fillStyle = C.junta;
-    for (let x = 6; x < W; x += 26) g.fillRect(x, SUELO + 6, 2, H - SUELO - 6);
+    g.fillStyle = C.barraTapa; g.fillRect(0, SUELO + 1, W, 3);
+    g.fillStyle = C.barra;     g.fillRect(0, SUELO + 4, W, 2);
+    g.fillStyle = "rgba(0,0,0,.45)"; g.fillRect(0, SUELO + 6, W, 2);
+    // Paneles del frente
+    for (let x = 4; x < W - 6; x += 30) {
+      g.fillStyle = "#3a280d";
+      g.fillRect(x, SUELO + 11, 24, H - SUELO - 15);
+      g.fillStyle = "#1d1305";
+      g.fillRect(x, SUELO + 11, 24, 1);
+      g.fillRect(x, SUELO + 11, 1, H - SUELO - 15);
+    }
   }
 
   /** Fuego: llamas por columnas, con altura que late. */
@@ -251,7 +274,7 @@
     // viñeta: oscurece los bordes y centra la mirada
     const grad = ctx.createRadialGradient(W / 2, 70, 40, W / 2, 70, 190);
     grad.addColorStop(0, "rgba(0,0,0,0)");
-    grad.addColorStop(1, "rgba(0,0,0,0.62)");
+    grad.addColorStop(1, "rgba(0,0,0,0.48)");
     ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
 
     raf = requestAnimationFrame(cuadro);
