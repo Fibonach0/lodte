@@ -25,14 +25,15 @@
   }
 
   const SALUDO =
-    "Sentate, aventurero. Soy el Tabernero — guardo las crónicas de la Orden. " +
-    "Preguntame por las campañas, por Fornheim, por la gente de la mesa o por lo que se cocina en la olla.";
+    "Sentaos, buen forastero. Soy el Tabernero, y guardo las crónicas de la Orden. " +
+    "Preguntad por las campañas, por Fornheim, por quienes se sientan a esta mesa, " +
+    "o por lo que hierve en la olla.";
 
   const SUGERENCIAS = [
     "¿Quiénes forman la Orden?",
-    "Contame de Fornheim",
-    "¿Qué campañas hay?",
-    "¿Qué se cocina acá?",
+    "Habladme de Fornheim",
+    "¿Qué campañas se han jugado?",
+    "¿Qué se cocina aquí?",
   ];
 
   const CSS = `
@@ -182,7 +183,7 @@
       <div class="tab-chips"></div>
       <form class="tab-form">
         <input class="tab-input" type="text" autocomplete="off"
-               placeholder="Preguntale al Tabernero..." aria-label="Tu pregunta" />
+               placeholder="Preguntad al Tabernero..." aria-label="Vuestra pregunta" />
         <button class="tab-send" type="submit">▶</button>
       </form>`;
 
@@ -262,7 +263,7 @@
 
       if (!res.ok) {
         const detail = await res.json().catch(() => ({}));
-        throw new Error(detail.error || "El Tabernero no contesta.");
+        throw new Error(detail.error || "El Tabernero no responde.");
       }
 
       bubble.classList.remove("tab-typing");
@@ -303,7 +304,7 @@
       if (answer.trim()) {
         history.push({ role: "assistant", content: answer });
       } else {
-        throw new Error("El Tabernero se quedó callado. Probá de nuevo.");
+        throw new Error("El Tabernero ha callado. Intentadlo de nuevo.");
       }
     } catch (err) {
       // La pregunta no llegó a tener respuesta: la sacamos del historial para
