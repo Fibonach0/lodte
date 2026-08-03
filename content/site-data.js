@@ -110,6 +110,17 @@ const SITE_DATA = {
   // ──────────────────────────────────────────
   // Campañas
   // Para agregar una campaña, copiá un bloque y completá.
+  //
+  // Campos obligatorios: id, title, dm, status, setting, tone, desc.
+  // Campos OPCIONALES (si no los ponés, simplemente no se muestran):
+  //   startDate:    "2024" o "Marzo 2024"  → cuándo arrancó
+  //   sessions:     12                      → cantidad de sesiones jugadas
+  //   players:      ["Nombre 1", "Nombre 2"]→ jugadores en la mesa
+  //   dndBeyondUrl: "https://www.dndbeyond.com/campaigns/XXXXXXX" → botón "Ver en D&D Beyond"
+  //   maps:         [ { img: "assets/img/mapas/<carpeta>/mapa.jpg", title: "Región X" } ]
+  //                 → galería de mapas (subí las imágenes a assets/img/mapas/; ver ese README)
+  //   Los LOGS de sesión de cada campaña van en la sección "chronicles" (más abajo),
+  //   enlazados por el campo "campaign" = el title EXACTO de la campaña.
   // ──────────────────────────────────────────
   campaigns: [
     {
@@ -147,6 +158,15 @@ const SITE_DATA = {
       setting: "Fornheim",
       tone: "Resonancia, origen",
       desc: "Una campaña cuyo nombre convoca resonancia, origen y llamado. El eco de antiguos acontecimientos, la activación de fuerzas dormidas o el inicio de una búsqueda con consecuencias amplias.",
+      // ── Campos opcionales (ejemplo / piloto — completá o ajustá) ──
+      dndBeyondUrl: "https://www.dndbeyond.com/campaigns/8001251",
+      // startDate: "2024",
+      // sessions: 0,
+      // players: ["..."],
+      maps: [
+        // Subí las imágenes a assets/img/mapas/echoes-first-call/ y descomentá:
+        // { img: "assets/img/mapas/echoes-first-call/mapa-region-inicial.jpg", title: "Región inicial" },
+      ],
     },
     {
       id: 5,
@@ -285,22 +305,24 @@ const SITE_DATA = {
   ],
 
   // ──────────────────────────────────────────
-  // Crónicas de sesión
-  // Para agregar una crónica, copiá el bloque de ejemplo.
+  // Crónicas de sesión = el LOG de cada campaña
+  // Cada entrada es una sesión. El campo "campaign" debe coincidir EXACTO con
+  // el title de la campaña (así aparece dentro de esa campaña, en Campañas → Ver más).
+  // Se ordenan por número de sesión. Campos opcionales: characters, keyEvents, consequences.
   // ──────────────────────────────────────────
   chronicles: [
-    // Ejemplo:
-    // {
-    //   campaign: "El Lamento de las Doncellas",
-    //   session: 1,
-    //   title: "El inicio del viaje",
-    //   date: "2024-03-15",
-    //   dm: "Santiago Agostinelli",
-    //   characters: ["Personaje 1", "Personaje 2"],
-    //   summary: "Resumen de lo sucedido en la sesión...",
-    //   keyEvents: ["Evento 1", "Evento 2"],
-    //   consequences: "Impacto de lo ocurrido...",
-    // },
+    {
+      campaign: "Echoes First Call", // ← debe ser IGUAL al title de la campaña
+      session: 1,
+      title: "Ejemplo — El primer eco",
+      date: "2024-01-01",
+      dm: "Rodolfo Agustín García",
+      characters: [], // opcional: ["Nombre del PJ", ...]
+      summary: "Entrada de EJEMPLO para mostrar cómo se ve un log de sesión. Reemplazá este texto con el resumen real: qué hicieron los personajes, a dónde llegaron, qué decisiones tomaron.",
+      keyEvents: ["Evento clave 1 (editá)", "Evento clave 2 (editá)"],
+      consequences: "Qué cambió en el mundo tras la sesión (opcional).",
+    },
+    // Copiá el bloque de arriba para cada sesión de cualquier campaña.
   ],
 
   // ──────────────────────────────────────────

@@ -285,6 +285,47 @@ img { max-width: 100%; height: auto; }
   font-family: var(--font-pixel); font-size: 7px; color: var(--gold-dim);
   padding: 3px 8px; border: 1px solid var(--gold-ghost); white-space: nowrap;
 }
+.campaign-sub {
+  font-family: var(--font-pixel); font-size: 9px; color: var(--gold);
+  margin: 0 0 12px; letter-spacing: 1px;
+}
+
+/* ── Campaign Maps (galería) ── */
+.campaign-maps {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;
+}
+.campaign-map {
+  display: block; border: 2px solid var(--gold-ghost); background: var(--bg-card);
+  transition: border-color 0.2s, transform 0.2s; text-decoration: none;
+}
+.campaign-map:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
+.campaign-map img {
+  display: block; width: 100%; height: 110px; object-fit: cover;
+  image-rendering: pixelated;
+}
+.campaign-map span {
+  display: block; font-family: var(--font-pixel); font-size: 7px; color: var(--gold-dim);
+  padding: 8px 6px; text-align: center; line-height: 1.5;
+}
+
+/* ── Chronicles (log de sesiones) ── */
+.chronicle-list { display: grid; gap: 12px; }
+.chronicle {
+  border-left: 3px solid var(--gold-darker); background: var(--bg-card);
+  padding: 12px 14px;
+}
+.chronicle-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.chronicle-session {
+  font-family: var(--font-pixel); font-size: 7px; color: var(--gold);
+  border: 1px solid var(--gold-ghost); padding: 3px 6px; white-space: nowrap;
+}
+.chronicle-title { font-family: var(--font-body); font-size: 16px; color: var(--text-bright); font-weight: 600; }
+.chronicle-date { font-family: var(--font-body); font-size: 13px; color: var(--gold-faint); margin-left: auto; }
+.chronicle-summary { font-size: 15px; color: var(--text-muted); margin: 0 0 8px; line-height: 1.6; }
+.chronicle-events { margin: 8px 0; padding-left: 20px; }
+.chronicle-events li { font-size: 14px; color: var(--gold-dim); margin-bottom: 4px; }
+.chronicle-cons { font-size: 14px; color: var(--text-muted); margin: 8px 0 0; }
+.chronicle-cons strong { color: var(--gold-dark); }
 
 /* ── Contact Form ── */
 .form-label {

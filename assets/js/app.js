@@ -173,11 +173,49 @@
       '<h3 style="font-family:var(--font-pixel);font-size:11px;color:var(--gold);margin-bottom:16px;">Explorar Fornheim</h3><div class="grid grid-3">'+s+'</div></div>';
   }
 
+  // Detalle extendido de una campaña: metadatos, D&D Beyond, mapas y log de sesiones.
+  // Todo es opcional: si la campaña no tiene un dato, ese bloque no se renderiza.
+  function campaignExtra(c) {
+    var out="";
+    var meta=[];
+    if(c.startDate) meta.push("Inicio: "+esc(c.startDate));
+    if(c.sessions) meta.push(esc(String(c.sessions))+" sesiones");
+    if(c.players&&c.players.length) meta.push("Jugadores: "+c.players.map(esc).join(", "));
+    if(meta.length) out+='<p style="font-size:13px;color:var(--gold-dim);margin:14px 0 0;">'+meta.join(' &nbsp;|&nbsp; ')+'</p>';
+
+    if(c.dndBeyondUrl) out+='<div style="margin-top:14px;"><a href="'+esc(c.dndBeyondUrl)+'" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">&#128220; Ver en D&amp;D Beyond &#8599;</a></div>';
+
+    if(c.maps&&c.maps.length){
+      var mh="";
+      for(var i=0;i<c.maps.length;i++){
+        var mp=c.maps[i], mt=mp.title||"Mapa";
+        mh+='<a href="'+esc(mp.img)+'" target="_blank" rel="noopener noreferrer" class="campaign-map" onclick="event.stopPropagation()" title="'+esc(mt)+'"><img src="'+esc(mp.img)+'" alt="'+esc(mt)+'" loading="lazy"/><span>'+esc(mt)+'</span></a>';
+      }
+      out+='<div style="margin-top:18px;"><h4 class="campaign-sub">&#128506; Mapas</h4><div class="campaign-maps">'+mh+'</div></div>';
+    }
+
+    var logs=D.chronicles.filter(function(ch){return ch.campaign===c.title;}).sort(function(a,b){return (a.session||0)-(b.session||0);});
+    if(logs.length){
+      var lh="";
+      for(var k=0;k<logs.length;k++){
+        var ch=logs[k], ev="";
+        if(ch.keyEvents&&ch.keyEvents.length){
+          ev='<ul class="chronicle-events">';
+          for(var e=0;e<ch.keyEvents.length;e++) ev+='<li>'+esc(ch.keyEvents[e])+'</li>';
+          ev+='</ul>';
+        }
+        lh+='<div class="chronicle"><div class="chronicle-head"><span class="chronicle-session">Sesión '+esc(String(ch.session||"?"))+'</span> <span class="chronicle-title">'+esc(ch.title||"")+'</span>'+(ch.date?' <span class="chronicle-date">'+esc(ch.date)+'</span>':'')+'</div>'+(ch.summary?'<p class="chronicle-summary">'+esc(ch.summary)+'</p>':'')+ev+(ch.consequences?'<p class="chronicle-cons"><strong>Consecuencias:</strong> '+esc(ch.consequences)+'</p>':'')+'</div>';
+      }
+      out+='<div style="margin-top:18px;"><h4 class="campaign-sub">&#128220; Log de sesiones</h4><div class="chronicle-list">'+lh+'</div></div>';
+    }
+    return out;
+  }
+
   function pageCampaigns() {
     var cards="";
     for(var i=0;i<D.campaigns.length;i++){
       var c=D.campaigns[i], isOpen=openCampaign===c.id;
-      cards+='<div class="card clickable" data-campaign-id="'+c.id+'"><div class="flex" style="justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><h3 class="card-title" style="flex:1;margin:0;">'+esc(c.title)+'</h3><span class="campaign-status">'+esc(c.status)+'</span></div><p class="card-meta mb-1">DM: '+esc(c.dm)+'</p><p style="font-size:12px;color:var(--gold-dim);margin:0 0 10px;">'+esc(c.setting)+' &middot; '+esc(c.tone)+'</p><div class="campaign-details'+(isOpen?' open':'')+'"><p class="prose-muted" style="font-size:15px;margin:0;">'+esc(c.desc)+'</p></div><p style="font-family:var(--font-pixel);font-size:7px;color:var(--gold-faint);margin:10px 0 0;text-align:right;">'+(isOpen?'&#9650; Cerrar':'&#9660; Ver más')+'</p></div>';
+      cards+='<div class="card clickable" data-campaign-id="'+c.id+'"><div class="flex" style="justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><h3 class="card-title" style="flex:1;margin:0;">'+esc(c.title)+'</h3><span class="campaign-status">'+esc(c.status)+'</span></div><p class="card-meta mb-1">DM: '+esc(c.dm)+'</p><p style="font-size:12px;color:var(--gold-dim);margin:0 0 10px;">'+esc(c.setting)+' &middot; '+esc(c.tone)+'</p><div class="campaign-details'+(isOpen?' open':'')+'"><p class="prose-muted" style="font-size:15px;margin:0;">'+esc(c.desc)+'</p>'+campaignExtra(c)+'</div><p style="font-family:var(--font-pixel);font-size:7px;color:var(--gold-faint);margin:10px 0 0;text-align:right;">'+(isOpen?'&#9650; Cerrar':'&#9660; Ver más')+'</p></div>';
     }
     return '<div class="section-narrow" style="max-width:1000px;">'+sectionTitle("Campañas","Cada historia, una puerta distinta hacia el juego")+'<p class="prose-muted text-center mb-4" style="max-width:700px;margin-left:auto;margin-right:auto;">Algunas se apoyan en la épica bélica. Otras en el viaje, la exploración, la política, el misterio o la supervivencia. Todas dejan marcas en la memoria del grupo.</p><div class="grid grid-2">'+cards+'</div></div>';
   }
