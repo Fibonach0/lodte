@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap de La Orden del Tabernero Errante.
+  El sitio es una SPA con hash routing (/#campaigns, /#fornheim, ...), por lo que
+  las secciones NO son URLs indexables separadas: la única URL real es la home.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.lodte.com.ar/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

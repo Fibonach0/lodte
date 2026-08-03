@@ -26,8 +26,15 @@ Sobre esos cimientos se construyó la versión actual: una web completa con est�
 
 ```
 lodte/
-├── index.html              ← Página principal (no necesita edición frecuente)
+├── index.html              ← Página principal + metadatos SEO / JSON-LD
+├── 404.html                ← Redirección de rutas al hash routing (SPA)
 ├── CNAME                   ← Configuración de dominio (NO MODIFICAR)
+├── robots.txt              ← Permisos de crawlers (buscadores + bots de IA)
+├── sitemap.xml             ← Mapa del sitio para buscadores
+├── llms.txt                ← Índice legible por asistentes de IA (AEO)
+├── ai.txt                  ← Política de uso para IA
+├── humans.txt              ← Créditos del equipo
+├── .nojekyll               ← GitHub Pages sirve los archivos tal cual
 ├── content/
 │   └── site-data.js        ← ✏️ TODOS los datos editables del sitio
 ├── assets/
@@ -36,7 +43,7 @@ lodte/
 │   ├── js/
 │   │   └── app.js          ← Motor de renderizado del sitio
 │   └── img/
-│       ├── og-image.png    ← Imagen para redes sociales
+│       ├── og-image.png    ← Imagen para redes sociales (1200×630)
 │       └── favicon.png     ← Favicon del sitio
 └── README.md               ← Estás aquí, aventurero
 ```
@@ -129,8 +136,17 @@ Este archivo contiene `www.lodte.com.ar` y es lo que conecta el repositorio de G
 - **Hosting:** GitHub Pages (gratuito)
 - **DNS:** Cloudflare con registro CNAME apuntando a `Fibonach0.github.io`
 - **Stack:** HTML5 + CSS3 + JavaScript vanilla (sin frameworks, sin build steps)
-- **SEO:** Meta tags completos, Open Graph, Twitter Cards, JSON-LD structured data
+- **SEO / AEO:** Meta tags completos, Open Graph + Twitter Cards, `og-image` 1200×630, JSON-LD (`@graph`: Organization + WebSite + Person), `robots.txt`, `sitemap.xml`, `llms.txt`, `ai.txt`, `humans.txt`
 - **Formulario de contacto:** [FormSubmit.co](https://formsubmit.co/) (envía a marcos.caro.92@gmail.com)
+
+> ⚠️ **Bots de IA bloqueados por Cloudflare (pendiente):** el `robots.txt` que se sirve en
+> vivo lo gestiona Cloudflare ("Managed content" / Content Signals) y **bloquea** a GPTBot,
+> ClaudeBot, CCBot, Google-Extended, Amazonbot, Applebot-Extended, Bytespider y
+> meta-externalagent con `Disallow: /`. Por eso los asistentes de IA no pueden leer ni citar
+> el sitio. El `robots.txt` de este repo ya los permite, pero **no tiene efecto hasta
+> ajustar Cloudflare**: panel de Cloudflare del dominio → *AI Crawl Control* (o *Bots*) →
+> desactivar el bloqueo de AI crawlers / ajustar *Content Signals*. Verificar después con
+> `curl -s https://www.lodte.com.ar/robots.txt`.
 
 ---
 
@@ -161,10 +177,12 @@ Porque toda aventura que se precie empieza —o termina— con un buen estofado 
 
 ---
 
-## Licencia
+## Licencia y créditos
 
 Contenido narrativo y material de archivo desarrollado por LODTE.
 Sistema de referencia: Dungeons & Dragons 5e.
+
+**Desarrollo del ecosistema de herramientas:** [Rodolfo Agustín García](https://ragustingarcia.com/) | Sitio original de [Ignacio Antuña](https://github.com/Fibonach0).
 
 *Toda campaña deja huellas. Toda mesa crea su mitología. Este repositorio es el lugar donde esas huellas empiezan a ordenarse.*
 

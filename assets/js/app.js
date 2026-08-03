@@ -107,7 +107,7 @@
       '<div><p class="footer-heading">Navegación</p>'+nh+'</div>'+
       '<div><p class="footer-heading">Más</p>'+mh+'</div>'+
       '<div><p class="footer-heading">Tools &amp; Games</p>'+th+'</div>'+
-      '</div><div class="footer-bottom"><p class="footer-copy">&copy; '+new Date().getFullYear()+' La Orden del Tabernero Errante &middot; D&amp;D 5e &middot; lodte.com.ar</p></div></div></footer>';
+      '</div><div class="footer-bottom"><p class="footer-copy">&copy; '+new Date().getFullYear()+' La Orden del Tabernero Errante &nbsp;|&nbsp; D&amp;D 5e &nbsp;|&nbsp; lodte.com.ar</p></div></div></footer>';
   }
 
   // ══════════════════════════════════════════
@@ -245,7 +245,7 @@
   }
 
   function updateMeta() {
-    var t={home:"LODTE — La Orden del Tabernero Errante",about:"Qué es LODTE — La Orden del Tabernero Errante",fornheim:"Fornheim — El Mundo de LODTE",campaigns:"Campañas — LODTE",tools:"Tools & Games — LODTE",banquetes:"Banquetes y Leyendas — LODTE",community:"Comunidad — LODTE",contact:"Contacto — LODTE",admin_login:"Zona Privada — LODTE",admin_panel:"Panel — LODTE"};
+    var t={home:"LODTE | La Orden del Tabernero Errante",about:"Qué es LODTE | La Orden del Tabernero Errante",fornheim:"Fornheim | El Mundo de LODTE",campaigns:"Campañas | LODTE",tools:"Tools & Games | LODTE",banquetes:"Banquetes y Leyendas | LODTE",community:"Comunidad | LODTE",contact:"Contacto | LODTE",admin_login:"Zona Privada | LODTE",admin_panel:"Panel | LODTE"};
     document.title=t[currentPage]||t.home;
     var m=document.querySelector('meta[name="description"]');
     if(m){var d={home:"La Orden del Tabernero Errante: campañas, crónicas y mundos compartidos de Calabozos y Dragones. Archivo vivo de aventuras en Fornheim.",about:"Conocé a LODTE: un grupo de amigos y creadores dedicados a construir experiencias de rol memorables en Dungeons & Dragons.",fornheim:"Fornheim: un mundo de clanes, reinos, guerra y tradición. El corazón narrativo del universo de LODTE.",campaigns:"Campañas de LODTE: El Lamento de las Doncellas, Rough Sails, Solaris 3 y más historias de Calabozos y Dragones.",tools:"Herramientas y juegos digitales de LODTE: El Códice del Tabernero, Los Dados del Tabernero, Sala de Mapas y Goblin King.",banquetes:"Banquetes y Leyendas: recetas épicas inspiradas en Fornheim. Un viaje culinario por el mundo de LODTE.",community:"El futuro de LODTE: mesas abiertas, talleres, eventos y recursos para la comunidad de rol.",contact:"Contactá a La Orden del Tabernero Errante."};m.content=d[currentPage]||d.home;}
