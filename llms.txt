@@ -1,0 +1,46 @@
+# La Orden del Tabernero Errante (LODTE)
+
+> Colectivo argentino de Dungeons & Dragons 5e: un archivo vivo de campañas,
+> crónicas, personajes, mapas y herramientas digitales, con eje en el mundo
+> original de Fornheim.
+
+Versión LLM-friendly de [www.lodte.com.ar](https://www.lodte.com.ar/).
+
+## About
+
+LODTE ("La Orden del Tabernero Errante") es un grupo de amigos y creadores unidos
+por Calabozos y Dragones. El sitio documenta sus campañas y su worldbuilding, y
+reúne el ecosistema de herramientas digitales creadas por el grupo.
+
+- Colectivo: La Orden del Tabernero Errante — https://www.lodte.com.ar/
+- Desarrollo del ecosistema de herramientas: Rodolfo Agustín García — https://ragustingarcia.com/ (GitHub: https://github.com/ragustingarcia)
+- Instagram: https://www.instagram.com/thedungeonarchives/
+- YouTube: https://www.youtube.com/@LODTE
+
+## Secciones del sitio
+
+- Inicio — presentación del colectivo y accesos rápidos.
+- LODTE (Qué es) — quiénes son, cómo trabajan, la visión del proyecto y los integrantes.
+- Fornheim — el mundo original: historia, regiones, culturas, panteón tolfrádico, facciones y atlas.
+- Campañas — las historias jugadas, cada una dirigida por distintos DMs (What is Dead May Never Die, El Lamento de las Doncellas, Rough Sails, Echoes First Call, The Land Before Time, Solaris 3).
+- Tools & Games — herramientas y juegos digitales del ecosistema (ver abajo).
+- Banquetes y Leyendas — recetario temático inspirado en Fornheim.
+- Comunidad — líneas futuras: mesas abiertas, talleres, recursos para DMs, eventos.
+- Contacto — formulario y redes del colectivo.
+
+## Ecosistema de herramientas LODTE
+
+- El Códice del Tabernero — compendio de reglas y referencias para el DM — https://elcodicedeltabernero.netlify.app/
+- Los Dados del Tabernero — tirador de dados virtual con estética LODTE — https://losdadosdeltabernero.netlify.app/
+- Sala de Mapas Online — mapas compartidos en tiempo real con fog of war y tokens — https://lodte-sala-de-mapas.onrender.com/
+- Goblin King — juego de estrategia y supervivencia goblin — https://velizor.ai/games/goblin_king.html
+
+## Stack
+
+HTML5 + CSS3 + JavaScript vanilla (sin frameworks). Hosting: GitHub Pages. DNS/proxy: Cloudflare.
+
+## Contact
+
+- Web del colectivo: https://www.lodte.com.ar/
+- Desarrollador del ecosistema: https://ragustingarcia.com/ · https://github.com/ragustingarcia
+- Instagram: https://www.instagram.com/thedungeonarchives/

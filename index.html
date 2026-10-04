@@ -5,28 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0A0703" />
 
+  <!-- La Orden del Tabernero Errante | www.lodte.com.ar | Desarrollo del ecosistema de herramientas: Rodolfo Agustín García | https://ragustingarcia.com/ -->
+
   <!-- SEO -->
-  <title>LODTE — La Orden del Tabernero Errante | Calabozos y Dragones</title>
+  <title>LODTE | La Orden del Tabernero Errante | Calabozos y Dragones</title>
   <meta name="description" content="La Orden del Tabernero Errante: campañas, crónicas y mundos compartidos de Calabozos y Dragones. Archivo vivo de aventuras en Fornheim." />
   <meta name="keywords" content="LODTE, La Orden del Tabernero Errante, Calabozos y Dragones, Dungeons and Dragons, D&D, Fornheim, rol, campañas, crónicas, RPG, tabletop, juego de rol" />
   <meta name="author" content="La Orden del Tabernero Errante" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.lodte.com.ar/" />
+  <link rel="author" href="/humans.txt" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="LODTE — La Orden del Tabernero Errante" />
+  <meta property="og:title" content="LODTE | La Orden del Tabernero Errante" />
   <meta property="og:description" content="Campañas, crónicas y mundos compartidos de Calabozos y Dragones. Un archivo vivo de aventuras nacidas entre dados, mapas y fuego de taberna." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.lodte.com.ar/" />
   <meta property="og:image" content="https://www.lodte.com.ar/assets/img/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="La Orden del Tabernero Errante | Calabozos y Dragones en Fornheim" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:site_name" content="La Orden del Tabernero Errante" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LODTE — La Orden del Tabernero Errante" />
+  <meta name="twitter:title" content="LODTE | La Orden del Tabernero Errante" />
   <meta name="twitter:description" content="Campañas, crónicas y mundos compartidos de Calabozos y Dragones." />
   <meta name="twitter:image" content="https://www.lodte.com.ar/assets/img/og-image.png" />
+  <meta name="twitter:image:alt" content="La Orden del Tabernero Errante | Calabozos y Dragones en Fornheim" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
@@ -39,21 +47,61 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "La Orden del Tabernero Errante",
-    "alternateName": "LODTE",
-    "url": "https://www.lodte.com.ar",
-    "description": "Grupo creativo dedicado a vivir, narrar y expandir campañas de Calabozos y Dragones, con eje en Fornheim.",
-    "sameAs": ["https://www.instagram.com/thedungeonarchives/"],
-    "member": [
-      {"@type": "Person", "name": "Marcos Caro"},
-      {"@type": "Person", "name": "Santiago Agostinelli"},
-      {"@type": "Person", "name": "Federico Diaz Sparta"},
-      {"@type": "Person", "name": "Ignacio Antuña"},
-      {"@type": "Person", "name": "Juan Ignacio Bide"},
-      {"@type": "Person", "name": "Martín Morillo"},
-      {"@type": "Person", "name": "Ulises Saggion Zyupas"},
-      {"@type": "Person", "name": "Rodolfo Agustín García"}
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.lodte.com.ar/#organization",
+        "name": "La Orden del Tabernero Errante",
+        "alternateName": "LODTE",
+        "url": "https://www.lodte.com.ar/",
+        "logo": "https://www.lodte.com.ar/assets/img/favicon.png",
+        "description": "Grupo creativo dedicado a vivir, narrar y expandir campañas de Calabozos y Dragones, con eje en el mundo de Fornheim.",
+        "sameAs": [
+          "https://www.instagram.com/thedungeonarchives/",
+          "https://www.youtube.com/@LODTE"
+        ],
+        "member": [
+          {"@type": "Person", "name": "Marcos Caro"},
+          {"@type": "Person", "name": "Santiago Agostinelli"},
+          {"@type": "Person", "name": "Federico Diaz Sparta"},
+          {"@type": "Person", "name": "Ignacio Antuña"},
+          {"@type": "Person", "name": "Juan Ignacio Bide"},
+          {"@type": "Person", "name": "Martín Morillo"},
+          {"@type": "Person", "name": "Ulises Saggion Zyupas"},
+          {"@id": "https://ragustingarcia.com/#person"}
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.lodte.com.ar/#website",
+        "url": "https://www.lodte.com.ar/",
+        "name": "La Orden del Tabernero Errante",
+        "alternateName": "LODTE",
+        "description": "Campañas, crónicas y mundos compartidos de Calabozos y Dragones. Archivo vivo de aventuras en Fornheim.",
+        "inLanguage": "es-AR",
+        "publisher": { "@id": "https://www.lodte.com.ar/#organization" },
+        "creator": { "@id": "https://ragustingarcia.com/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://ragustingarcia.com/#person",
+        "name": "Rodolfo Agustín García",
+        "givenName": "Rodolfo Agustín",
+        "familyName": "García",
+        "url": "https://ragustingarcia.com/",
+        "image": "https://ragustingarcia.com/assets/og-image.png",
+        "email": "ragustingarcia@lodte.com.ar",
+        "sameAs": [
+          "https://github.com/ragustingarcia",
+          "https://www.linkedin.com/in/ragustingarcia/",
+          "https://rcwe.ragustingarcia.com/"
+        ],
+        "alumniOf": [
+          { "@type": "EducationalOrganization", "name": "Universidad de San Andrés", "url": "https://www.udesa.edu.ar/" },
+          { "@type": "EducationalOrganization", "name": "Pontificia Universidad Católica Argentina", "url": "https://uca.edu.ar/" }
+        ],
+        "address": { "@type": "PostalAddress", "addressLocality": "Tigre", "addressRegion": "Buenos Aires", "addressCountry": "AR" }
+      }
     ]
   }
   </script>

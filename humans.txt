@@ -1,0 +1,28 @@
+/* TEAM */
+Colectivo: La Orden del Tabernero Errante (LODTE)
+Site: https://www.lodte.com.ar/
+Instagram: @thedungeonarchives
+YouTube: @LODTE
+Location: Argentina
+
+Sitio original: Ignacio Antuña — https://github.com/Fibonach0
+Desarrollo del ecosistema de herramientas: Rodolfo Agustín García
+Site: https://ragustingarcia.com/
+GitHub: https://github.com/ragustingarcia
+Location: Tigre, Buenos Aires, AR
+
+/* INTEGRANTES */
+Marcos Caro — DM & Jugador (creador de The Dungeon Archives)
+Santiago Agostinelli — DM & Creador de Fornheim
+Federico Diaz Sparta — DM & Game Developer
+Ignacio Antuña — Jugador & Desarrollador
+Juan Ignacio Bide — El Tabernero
+Martín Morillo — Jugador
+Ulises Saggion Zyupas — DM & Jugador
+Rodolfo Agustín García — DM & Desarrollador
+
+/* SITE */
+Standards: HTML5, CSS3, ES2022
+Components: JavaScript vanilla (sin frameworks)
+Hosting: GitHub Pages
+DNS/Proxy: Cloudflare

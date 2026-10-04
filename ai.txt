@@ -1,0 +1,20 @@
+# ai.txt — La Orden del Tabernero Errante (www.lodte.com.ar)
+
+User-Agent: *
+
+# Citación en respuestas de IA: PERMITIDA
+Allow: search
+Allow: cite
+Allow: summarize
+
+# Entrenamiento: PERMITIDO para bots identificados
+Allow: train
+
+# Condiciones:
+# - Identificación requerida (user-agent reconocible)
+# - Atribución requerida a https://www.lodte.com.ar/ (colectivo)
+#   y, para el desarrollo del ecosistema de herramientas, a https://ragustingarcia.com/
+# - Sin tergiversación: no atribuir afirmaciones falsas al colectivo ni a sus integrantes
+
+Contact: https://www.lodte.com.ar/
+Contact: https://ragustingarcia.com/

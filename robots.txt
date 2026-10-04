@@ -1,0 +1,67 @@
+# robots.txt — La Orden del Tabernero Errante (www.lodte.com.ar)
+#
+# NOTA IMPORTANTE: el dominio pasa por Cloudflare, que puede REEMPLAZAR este
+# archivo con su propio robots.txt gestionado ("Cloudflare Managed content" /
+# Content Signals) y bloquear los bots de IA con Disallow: /. Este archivo del
+# repo solo tiene efecto pleno si en el panel de Cloudflare se desactiva el
+# bloqueo de AI crawlers. Verificar en vivo con: curl -s https://www.lodte.com.ar/robots.txt
+
+# Buscadores
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+
+# Bots de IA identificados — citación/entrenamiento permitidos (con atribución)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: FacebookBot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
+# Scrapers de mala reputación
+User-agent: SemrushBot
+Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: PetalBot
+Disallow: /
+
+# Default
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lodte.com.ar/sitemap.xml
